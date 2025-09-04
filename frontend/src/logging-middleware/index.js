@@ -1,9 +1,10 @@
-const axios = require("axios");
+import axios from "axios";
 
-const createLogger = ({ stack = "backend", token }) => {
+export const createLogger = ({ stack = "frontend", token }) => {
   /**
+   * Log function
    * @param {string} level - debug | info | warn | error | fatal
-   * @param {string} packageName - cache | controller | cron_job | db | domain | handler | repository | route | service | auth | config | middleware | utils
+   * @param {string} packageName - api | component | hook | page | state | style | auth | config | middleware | utils
    * @param {string} message - descriptive message
    */
   return async (level, packageName, message) => {
@@ -23,9 +24,7 @@ const createLogger = ({ stack = "backend", token }) => {
         }
       );
     } catch (err) {
-      console.error("Logging failed:", err.message); // fallback only
+      console.error("Logging failed:", err.message);
     }
   };
 };
-
-module.exports = { createLogger };
